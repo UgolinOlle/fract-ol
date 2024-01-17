@@ -62,6 +62,8 @@ int main(int argc, char **argv) {
     ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
   ft_check_args(argc, argv, &fract);
   ft_init_mlx(&fract);
+  ft_print_mlx(&fract);
   ft_menu(&fract);
+  mlx_loop(fract.mlx);
   return (0);
 }
