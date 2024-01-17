@@ -43,7 +43,9 @@ void ft_init_mlx(t_mlx *fract) {
   fract->win = mlx_new_window(fract->mlx, WIDTH, HEIGHT, fract->title);
   if (!fract->win)
     ft_exit(fract, 1);
+  fract->img = mlx_new_image(fract->mlx, WIDTH, HEIGHT);
+  if (!fract->img)
+    ft_exit(fract, 1);
   fract->data = mlx_get_data_addr(fract->img, &fract->bpp, &fract->size_line,
                                   &fract->endian);
-  fract->img = mlx_new_image(fract->mlx, WIDTH, HEIGHT);
 }
