@@ -14,7 +14,7 @@
 
 int ft_key_hook(int keycode, t_mlx *fract) {
   if (keycode == 53)
-    ft_exit(fract);
+    ft_exit(fract, 0);
   else if (keycode == 123)
     fract->x1 *= 1.1;
   else if (keycode == 124)
