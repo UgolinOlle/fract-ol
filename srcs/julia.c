@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_julia.c                                         :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 00:50:18 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/16 23:24:37 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/17 15:49:27 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,6 @@ void ft_put_pixel_to_img(t_mlx *fract, int x, int y, int color) {
 }
 
 /**
- * @brief Get color.
- *
- * @param i int Number of iterations.
- * @param fract t_mlx Fractal struct.
- * @return int Color.
- */
-static int ft_get_color(int i, t_mlx *fract) {
-  int color;
-
-  color = 0x000000;
-  if (i < fract->max_iter)
-    color = fract->color * i;
-  return (color);
-}
-
-/**
  * @brief Draw the Julia fractal.
  *
  * @param fract t_mlx Fractal struct.
@@ -79,6 +63,7 @@ void ft_julia(t_mlx *fract) {
   int y;
   int i;
 
+  mlx_clear_window(fract->mlx, fract->win);
   y = 0;
   while (y < HEIGHT) {
     x = 0;
@@ -87,9 +72,10 @@ void ft_julia(t_mlx *fract) {
       if (i == fract->max_iter)
         ft_put_pixel_to_img(fract, x, y, 0x000000);
       else
-        ft_put_pixel_to_img(fract, x, y, ft_get_color(i, fract));
+        ft_put_pixel_to_img(fract, x, y, fract->color * i);
       x++;
     }
     y++;
   }
+  mlx_put_image_to_window(fract->mlx, fract->win, fract->img, 0, 0);
 }
