@@ -53,6 +53,7 @@ typedef struct s_mlx {
 // -- Utils
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
 void ft_exit(t_mlx *fract, int type);
+void ft_print_mlx(t_mlx *fract);
 
 // -- Init
 void ft_init_mlx(t_mlx *fract);
