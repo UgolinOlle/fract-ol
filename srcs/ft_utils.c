@@ -86,4 +86,7 @@ void ft_print_mlx(t_mlx *fract) {
   ft_putnbr_fd(fract->max_iter, STDOUT_FILENO);
   ft_putstr_fd("\nzoom: ", STDOUT_FILENO);
   ft_putnbr_fd(fract->zoom, STDOUT_FILENO);
+  ft_putstr_fd("\ncolor: ", STDOUT_FILENO);
+  ft_putnbr_fd(fract->color, STDOUT_FILENO);
+  ft_putstr_fd("\n", STDOUT_FILENO);
 }
