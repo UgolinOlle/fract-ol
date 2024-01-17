@@ -27,3 +27,11 @@ int ft_key_hook(int keycode, t_mlx *fract) {
     fract->zoom *= 1.1;
   return (0);
 }
+
+/**
+ * @brief Hook manager
+ *
+ * @param fract t_mlx Fractal struct.
+ * @return void
+ */
+void ft_hook(t_mlx *fract) { mlx_hook(fract->win, 2, 0, ft_key_hook, fract); }
