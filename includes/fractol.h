@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/16 23:54:06 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/17 23:31:18 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ typedef struct s_mlx {
 
 // -- Utils
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
-void ft_exit(t_mlx *fract, int type);
-void ft_print_mlx(t_mlx *fract);
+int ft_exit(t_mlx *fract, int type);
 
 // -- Init
 void ft_init_mlx(t_mlx *fract);
@@ -66,6 +65,9 @@ void ft_julia(t_mlx *fract);
 // -- Burning Ship
 
 // -- Hook
-int ft_key_hook(int keycode, t_mlx *fract);
+int ft_handle_mouse(int button, int x, int y, t_mlx *fract);
+
+// -- Main
+void ft_menu(t_mlx *fract);
 
 #endif
