@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:47:19 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/16 23:52:55 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/17 23:07:19 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void ft_check_args(int argc, char **argv, t_mlx *fract) {
  *
  * @param fract t_mlx Fractal struct.
  */
-static void ft_menu(t_mlx *fract) {
+void ft_menu(t_mlx *fract) {
   if (ft_strcmp(fract->title, "Mandelbrot") == 0)
     ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
                  STDOUT_FILENO);
@@ -62,8 +62,9 @@ int main(int argc, char **argv) {
     ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
   ft_check_args(argc, argv, &fract);
   ft_init_mlx(&fract);
-  ft_print_mlx(&fract);
   ft_menu(&fract);
+  mlx_hook(fract.win, 2, 0, ft_exit, &fract);
+  mlx_mouse_hook(fract.win, ft_handle_mouse, &fract);
   mlx_loop(fract.mlx);
   return (0);
 }
