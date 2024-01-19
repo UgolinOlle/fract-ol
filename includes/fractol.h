@@ -20,29 +20,32 @@
 #include <stdlib.h>
 
 // -- Variables
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 700
+#define HEIGHT 700
 
 // -- Structure
 typedef struct s_mlx {
   void *mlx;
   void *win;
   char *title;
-  int iter;
-  int max_iter;
-
   char *data;
   void *img;
-  int bpp;
-  int endian;
-  int size_line;
-  int color;
 
+  int iter;
+  int max_iter;
+  int color;
   int zoom;
-  int x;
-  int y;
-  double x1;
-  double y1;
+
+  int bpp;
+  int size_line;
+  int endian;
+
+  double x;
+  double y;
+  double x_start;
+  double y_start;
+  double x_end;
+  double y_end;
   double c_r;
   double c_i;
   double z_r;
@@ -53,21 +56,16 @@ typedef struct s_mlx {
 // -- Utils
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
 int ft_exit(t_mlx *fract, int type);
+int ft_get_color(int iter, int max_iter, int base);
 
 // -- Init
+void ft_init_julia(t_mlx *fract);
 void ft_init_mlx(t_mlx *fract);
 
 // -- Julia
 void ft_julia(t_mlx *fract);
 
-// -- Mandelbrot
-
-// -- Burning Ship
-
-// -- Hook
-int ft_handle_mouse(int button, int x, int y, t_mlx *fract);
-
 // -- Main
-void ft_menu(t_mlx *fract);
+void ft_fractal(t_mlx *fract);
 
 #endif
