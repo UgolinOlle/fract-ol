@@ -12,31 +12,31 @@
 
 #include "../includes/fractol.h"
 
-static void ft_init_fractal(t_mlx *fract) {
-  fract->mlx = NULL;
-  fract->win = NULL;
-  fract->iter = 0;
-  fract->max_iter = 50;
-  fract->data = NULL;
-  fract->img = NULL;
-  fract->bpp = 0;
-  fract->size_line = 0;
-  fract->endian = 0;
-  fract->color = 265;
+/**
+ * @brief Initialize Julia fractal
+ *
+ * @param t_mlx *fract - Struct containing all the data
+ * @return void
+ */
+void ft_init_julia(t_mlx *fract) {
+  fract->x_start = -1.0;
+  fract->y_start = -1.0;
+  fract->x_end = 3.0;
+  fract->y_end = 3.0;
   fract->zoom = 1;
-  fract->x = 0;
-  fract->y = 0;
-  fract->x1 = 0;
-  fract->y1 = 0;
-  fract->c_r = 0;
-  fract->c_i = 0;
-  fract->z_r = 0;
-  fract->z_i = 0;
-  fract->tmp = 0;
+  fract->max_iter = 50;
+  fract->c_r = 0.4;
+  fract->c_i = 0.4;
+  fract->color = 0x000000;
 }
 
+/**
+ * @brief Function to initialize the mlx
+ *
+ * @param t_mlx *fract - Struct containing all the data
+ * @return void
+ */
 void ft_init_mlx(t_mlx *fract) {
-  ft_init_fractal(fract);
   fract->mlx = mlx_init();
   if (!fract->mlx)
     ft_exit(fract, 1);
