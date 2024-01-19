@@ -33,11 +33,29 @@ static void ft_check_args(int argc, char **argv, t_mlx *fract) {
 }
 
 /**
+ * @brief Initialize the fractal data.
+ *
+ * @param fract t_mlx Fractal struct.
+ * @return void
+ */
+void ft_init_fract(t_mlx *fract) {
+  if (ft_strcmp(fract->title, "Mandelbrot") == 0)
+    ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
+                 STDOUT_FILENO);
+  else if (ft_strcmp(fract->title, "Julia") == 0)
+    ft_init_julia(fract);
+  else if (ft_strcmp(fract->title, "Burningship") == 0)
+    ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
+                 STDOUT_FILENO);
+  ft_fractal(fract);
+}
+
+/**
  * @brief Select the fractal to be drawn.
  *
  * @param fract t_mlx Fractal struct.
  */
-void ft_menu(t_mlx *fract) {
+void ft_fractal(t_mlx *fract) {
   if (ft_strcmp(fract->title, "Mandelbrot") == 0)
     ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
                  STDOUT_FILENO);
@@ -62,9 +80,9 @@ int main(int argc, char **argv) {
     ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
   ft_check_args(argc, argv, &fract);
   ft_init_mlx(&fract);
-  ft_menu(&fract);
-  mlx_hook(fract.win, 2, 0, ft_exit, &fract);
-  mlx_mouse_hook(fract.win, ft_handle_mouse, &fract);
+  ft_init_fract(&fract);
+  // mlx_hook(fract.win, 2, 0, ft_exit, &fract);
+  // mlx_mouse_hook(fract.win, ft_handle_mouse, &fract);
   mlx_loop(fract.mlx);
   return (0);
 }
