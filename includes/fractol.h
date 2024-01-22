@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/22 11:24:12 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/22 20:42:56 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ typedef struct s_mlx {
   t_complex julia;
   int iter;
   int max_iter;
-  t_color color;
+  t_color rgb;
+  int color;
 } t_mlx;
 
 // -- Init
@@ -59,7 +60,13 @@ void ft_init_fractol(t_mlx *fract);
 
 // -- Utils
 void ft_exit(t_mlx *fract, char *content);
-void ft_print_struct(t_mlx *fract);
+int ft_create_trgb(t_color rgb, int t);
+void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
+void ft_print_fractol(t_mlx *fract);
+
+// -- Julia
+void ft_init_julia(t_mlx *fract, int set);
+void ft_julia(t_mlx *fract);
 
 // -- Main
 void ft_exec_fract(t_mlx *fract);

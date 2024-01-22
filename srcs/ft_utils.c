@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/22 11:23:52 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/22 21:26:26 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,51 @@ void ft_exit(t_mlx *fract, char *content) {
 }
 
 /**
- * @brief Print all elements in the fractal struct.
+ * @brief Create TRGB color.
  *
- * @param fract t_mlx Fractal struct.
+ * @param t_color color - Color struct.
+ * @param int t - Transparency.
+ * @return int
+ */
+int ft_create_trgb(t_color rgb, int t) {
+  return (t << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
+}
+
+/**
+ * @brief Draw pixel.
+ *
+ * @param fract t_mlx - Fractal struct.
+ * @param x int - X coordinate.
+ * @param y int - Y coordinate.
+ * @param color int - Color.
  * @return void
  */
-void ft_print_struct(t_mlx *fract) {
+void ft_draw_pixel(t_mlx *fract, int x, int y, int color) {
+  char *dst;
+
+  dst = fract->data + (y * fract->size_line + x * (fract->bpp / 8));
+  *(unsigned int *)dst = color;
+}
+
+/**
+ * @brief Print all elements from fractol struct.
+ *
+ * @param fract t_mlx - Fractal struct.
+ * @return void
+ */
+void ft_print_fractol(t_mlx *fract) {
   printf("title: %s\n", fract->title);
-  printf("mlx: %p\n", fract->mlx);
-  printf("win: %p\n", fract->win);
-  printf("img: %p\n", fract->img);
-  printf("data: %p\n", fract->data);
+  printf("min.re: %f\n", fract->min.re);
+  printf("max.re: %f\n", fract->max.re);
+  printf("min.im: %f\n", fract->min.im);
+  printf("max.im: %f\n", fract->max.im);
+  printf("julia.re: %f\n", fract->julia.re);
+  printf("julia.im: %f\n", fract->julia.im);
+  printf("color.r: %d\n", fract->rgb.r);
+  printf("color.g: %d\n", fract->rgb.g);
+  printf("color.b: %d\n", fract->rgb.b);
+  printf("max_iter: %d\n", fract->max_iter);
   printf("bpp: %d\n", fract->bpp);
   printf("size_line: %d\n", fract->size_line);
   printf("endian: %d\n", fract->endian);
-  printf("x: %f\n", fract->x);
-  printf("y: %f\n", fract->y);
-  printf("z_re: %f\n", fract->z_re);
-  printf("z_im: %f\n", fract->z_im);
-  printf("c_re: %f\n", fract->c_re);
-  printf("c_im: %f\n", fract->c_im);
-  printf("tmp: %f\n", fract->tmp);
-  printf("iter: %d\n", fract->iter);
-  printf("max_iter: %d\n", fract->max_iter);
-  printf("zoom: %d\n", fract->zoom);
-  printf("color: %d\n", fract->color);
 }
