@@ -6,47 +6,52 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/17 23:31:11 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:23:52 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
 /**
- * @brief Calculate the number of iterations for each pixel.
- *
- * @param x int X coordinate.
- * @param y int Y coordinate.
- * @param fract t_mlx Fractal struct.
- * @return int Number of iterations.
- */
-void ft_draw_pixel(t_mlx *fract, int x, int y, int color) {
-  if (fract->x < WIDTH && fract->y < HEIGHT) {
-    color = mlx_get_color_value(fract->mlx, color);
-    ft_memcpy(fract->data + 4 * WIDTH * y + x * 4, &color, sizeof(int));
-  }
-}
-
-/**
  * @brief Handle errors.
  *
  * @param error char* Error message.
- * @param type int Type of error.
  */
-int ft_exit(t_mlx *fract, int type) {
-  if (type == 0) {
-    mlx_destroy_image(fract->mlx, fract->img);
+void ft_exit(t_mlx *fract, char *content) {
+  if (fract->win)
     mlx_destroy_window(fract->mlx, fract->win);
-    fract->win = NULL;
-    ft_putstr_fd("[INFO] - Exiting program.\n", STDOUT_FILENO);
-  } else if (type == 1) {
-    if (fract->win)
-      mlx_destroy_window(fract->mlx, fract->win);
-    if (fract->img)
-      mlx_destroy_image(fract->mlx, fract->img);
-    if (fract->mlx)
-      free(fract->mlx);
-  }
+  if (fract->img)
+    mlx_destroy_image(fract->mlx, fract->img);
+  if (fract->mlx)
+    free(fract->mlx);
+  ft_putstr_fd(content, STDERR_FILENO);
   exit(EXIT_SUCCESS);
-  return (0);
+}
+
+/**
+ * @brief Print all elements in the fractal struct.
+ *
+ * @param fract t_mlx Fractal struct.
+ * @return void
+ */
+void ft_print_struct(t_mlx *fract) {
+  printf("title: %s\n", fract->title);
+  printf("mlx: %p\n", fract->mlx);
+  printf("win: %p\n", fract->win);
+  printf("img: %p\n", fract->img);
+  printf("data: %p\n", fract->data);
+  printf("bpp: %d\n", fract->bpp);
+  printf("size_line: %d\n", fract->size_line);
+  printf("endian: %d\n", fract->endian);
+  printf("x: %f\n", fract->x);
+  printf("y: %f\n", fract->y);
+  printf("z_re: %f\n", fract->z_re);
+  printf("z_im: %f\n", fract->z_im);
+  printf("c_re: %f\n", fract->c_re);
+  printf("c_im: %f\n", fract->c_im);
+  printf("tmp: %f\n", fract->tmp);
+  printf("iter: %d\n", fract->iter);
+  printf("max_iter: %d\n", fract->max_iter);
+  printf("zoom: %d\n", fract->zoom);
+  printf("color: %d\n", fract->color);
 }

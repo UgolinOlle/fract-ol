@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:47:19 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/17 23:07:19 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:24:22 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,26 @@
  * @param fract t_mlx Fractal struct.
  */
 static void ft_check_args(int argc, char **argv, t_mlx *fract) {
-  if (argc != 2)
-    ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
-  if (ft_strcmp(argv[1], "mandelbrot") == 0)
-    fract->title = "Mandelbrot";
-  else if (ft_strcmp(argv[1], "julia") == 0)
-    fract->title = "Julia";
-  else if (ft_strcmp(argv[1], "burningship") == 0)
-    fract->title = "Burningship";
-  else
-    ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
+  if (argc < 2)
+    ft_exit(fract, "[ERROR] - Usage: ./fractol [fractal name]");
+  if (argc == 2) {
+    if (ft_strcmp(argv[1], "mandelbrot") == 0)
+      fract->title = "Mandelbrot";
+    else if (ft_strcmp(argv[1], "julia") == 0) {
+      fract->title = "Julia";
+    } else
+      ft_exit(fract, "[ERROR] - Usage: ./fractol [fractal name]");
+  } else if (argc == 3) {
+    if (ft_strcmp(argv[2], "1") == 0) {
+      ;
+    } else if (ft_strcmp(argv[2], "2") == 0) {
+      ;
+    } else if (ft_strcmp(argv[2], "3") == 0) {
+      ;
+    } else
+      ft_exit(fract, "[ERROR] - Usage: ./fractol [fractal name]");
+  } else
+    ft_exit(fract, "[ERROR] - Usage: ./fractol [fractal name]");
 }
 
 /**
@@ -38,32 +48,12 @@ static void ft_check_args(int argc, char **argv, t_mlx *fract) {
  * @param fract t_mlx Fractal struct.
  * @return void
  */
-void ft_init_fract(t_mlx *fract) {
-  if (ft_strcmp(fract->title, "Mandelbrot") == 0)
-    ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
-                 STDOUT_FILENO);
-  else if (ft_strcmp(fract->title, "Julia") == 0)
-    ft_init_julia(fract);
-  else if (ft_strcmp(fract->title, "Burningship") == 0)
-    ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
-                 STDOUT_FILENO);
-  ft_fractal(fract);
-}
-
-/**
- * @brief Select the fractal to be drawn.
- *
- * @param fract t_mlx Fractal struct.
- */
-void ft_fractal(t_mlx *fract) {
-  if (ft_strcmp(fract->title, "Mandelbrot") == 0)
-    ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
-                 STDOUT_FILENO);
-  else if (ft_strcmp(fract->title, "Julia") == 0)
-    ft_julia(fract);
-  else if (ft_strcmp(fract->title, "Burningship") == 0)
-    ft_putstr_fd("[INFO] - Mandelbrot asn't been implemented yet.",
-                 STDOUT_FILENO);
+void ft_exec_fract(t_mlx *fract) {
+  if (!ft_strcmp(fract->title, "Mandelbrot"))
+    ft_exit(fract, "[INFO] - Mandelbrot hasn't been implemented yet.");
+  else if (!ft_strcmp(fract->title, "Julia"))
+    ft_exit(fract, "[INFO] - Julia hasn't been implemented yet.");
+  mlx_put_image_to_window(fract->mlx, fract->win, fract->img, 0, 0);
 }
 
 /**
@@ -76,13 +66,9 @@ void ft_fractal(t_mlx *fract) {
 int main(int argc, char **argv) {
   t_mlx fract;
 
-  if (argc < 2)
-    ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
+  ft_init_fractol(&fract);
   ft_check_args(argc, argv, &fract);
-  ft_init_mlx(&fract);
-  ft_init_fract(&fract);
-  // mlx_hook(fract.win, 2, 0, ft_exit, &fract);
-  // mlx_mouse_hook(fract.win, ft_handle_mouse, &fract);
+  ft_exec_fract(&fract);
   mlx_loop(fract.mlx);
   return (0);
 }

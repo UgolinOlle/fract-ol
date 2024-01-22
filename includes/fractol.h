@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/17 23:31:18 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/22 11:24:12 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,48 +24,44 @@
 #define HEIGHT 700
 
 // -- Structure
+
+typedef struct s_color {
+  int r;
+  int g;
+  int b;
+} t_color;
+
+typedef struct s_complex {
+  double re;
+  double im;
+} t_complex;
+
 typedef struct s_mlx {
   void *mlx;
   void *win;
   char *title;
   char *data;
   void *img;
-
-  int iter;
-  int max_iter;
-  int color;
-  int zoom;
-
   int bpp;
   int size_line;
   int endian;
 
-  double x;
-  double y;
-  double x_start;
-  double y_start;
-  double x_end;
-  double y_end;
-  double c_r;
-  double c_i;
-  double z_r;
-  double z_i;
-  double tmp;
+  t_complex min;
+  t_complex max;
+  t_complex julia;
+  int iter;
+  int max_iter;
+  t_color color;
 } t_mlx;
 
-// -- Utils
-void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
-int ft_exit(t_mlx *fract, int type);
-int ft_get_color(int iter, int max_iter, int base);
-
 // -- Init
-void ft_init_julia(t_mlx *fract);
-void ft_init_mlx(t_mlx *fract);
+void ft_init_fractol(t_mlx *fract);
 
-// -- Julia
-void ft_julia(t_mlx *fract);
+// -- Utils
+void ft_exit(t_mlx *fract, char *content);
+void ft_print_struct(t_mlx *fract);
 
 // -- Main
-void ft_fractal(t_mlx *fract);
+void ft_exec_fract(t_mlx *fract);
 
 #endif
