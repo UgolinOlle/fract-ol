@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:47:19 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 22:39:50 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 17:17:30 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  */
 static void	ft_check_args(int argc, char **argv, t_mlx *fract)
 {
-	if (ft_strcmp(argv[1], "mandelbrot") == 0 && !argv[2])
+	if (ft_strcmp(argv[1], "mandelbrot") == 0)
 		ft_init_mandelbrot(fract);
 	else if (ft_strcmp(argv[1], "julia") == 0)
 	{
@@ -38,6 +38,8 @@ static void	ft_check_args(int argc, char **argv, t_mlx *fract)
 		else
 			ft_handle_error("[ERROR] - Usage: ./fractol julia [1 or 2 or 3]");
 	}
+	else if (ft_strcmp(argv[1], "tricorn") == 0)
+		ft_init_tricorn(fract);
 	else
 		ft_handle_error("[ERROR] - Usage: ./fractol [fractal name]");
 }
@@ -54,6 +56,8 @@ int	ft_exec_fract(t_mlx *fract)
 		ft_mandelbrot(fract);
 	else if (!ft_strcmp(fract->title, "Julia"))
 		ft_julia(fract);
+	else if (!ft_strcmp(fract->title, "Tricorn"))
+		ft_tricorn(fract);
 	return (0);
 }
 
@@ -73,7 +77,7 @@ int	main(int argc, char **argv)
 	ft_check_args(argc, argv, &fract);
 	ft_init_fractol(&fract);
 	ft_exec_fract(&fract);
-	mlx_mouse_hook(fract.win, ft_mouse_hook, &fract);
+	mlx_mouse_hook(fract.win, ft_zoom, &fract);
 	mlx_key_hook(fract.win, ft_key_hook, &fract);
 	mlx_hook(fract.win, 17, 0, ft_mlx_exit, &fract);
 	mlx_loop_hook(fract.mlx, ft_exec_fract, &fract);

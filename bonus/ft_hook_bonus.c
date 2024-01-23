@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
+/*   By: uolle <uolle@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:57:35 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 22:34:12 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 18:21:14 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,42 +60,19 @@ void	ft_zoom_in(t_mlx *fract, double cre, double cim)
 }
 
 /**
- * @brief Zoom in
+ * @brief Zoom out
  *
  * @param fract t_mlx Fractal struct.
  * @param cre double Mouse real part.
  * @param cim double Mouse imaginary part.
  * @return void
  */
-void	ft_zoom_in(t_mlx *fract, double cre, double cim)
+void	ft_zoom_out(t_mlx *fract, double cre, double cim)
 {
-	fract->min.re = cre + (fract->min.re - cre) * 0.9;
-	fract->min.im = cim + (fract->min.im - cim) * 0.9;
-	fract->max.re = cre + (fract->max.re - cre) * 0.9;
-	fract->max.im = cim + (fract->max.im - cim) * 0.9;
-}
-
-/**
- * @brief Handle mouse press
- *
- * @param button int Button code.
- * @param x int X coordinate.
- * @param y int Y coordinate.
- * @param fract t_mlx Fractal struct.
- */
-int	ft_mouse_hook(int button, int x, int y, t_mlx *fract)
-{
-	(void)x;
-	(void)y;
-	if (button == 4 || button == 5)
-	{
-		if (button == 4)
-			ft_zoom_in(fract, 0, 0);
-		else if (button == 5)
-			ft_zoom_out(fract, 0, 0);
-		ft_exec_fract(fract);
-	}
-	return (0);
+	fract->min.re = cre + (fract->min.re - cre) / 0.9;
+	fract->min.im = cim + (fract->min.im - cim) / 0.9;
+	fract->max.re = cre + (fract->max.re - cre) / 0.9;
+	fract->max.im = cim + (fract->max.im - cim) / 0.9;
 }
 
 /**

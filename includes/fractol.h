@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 17:18:06 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 22:34:59 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_mlx
 }				t_mlx;
 
 // -- Hooks
+int				ft_mouse_hook(int button, int x, int y, t_mlx *fract);
 int				ft_key_hook(int keycode, t_mlx *fract);
 
 // -- Init
