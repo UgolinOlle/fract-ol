@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:47:19 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 14:36:29 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 15:03:04 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 static void ft_check_args(int argc, char **argv, t_mlx *fract) {
   if (argc < 2)
     ft_exit(fract, "[ERROR] - Usage: ./fractol [fractal name]");
-  if (ft_strcmp(argv[1], "mandelbrot") == 0)
+  if (ft_strcmp(argv[1], "mandelbrot") == 0) {
     fract->title = "Mandelbrot";
-  else if (ft_strcmp(argv[1], "julia") == 0 && argv[2]) {
+    ft_init_mandelbrot(fract);
+  } else if (ft_strcmp(argv[1], "julia") == 0 && argv[2]) {
     fract->title = "Julia";
     if (ft_atoi(argv[2]) == 1)
       ft_init_julia(fract, 1);
@@ -44,11 +45,12 @@ static void ft_check_args(int argc, char **argv, t_mlx *fract) {
  * @param fract t_mlx Fractal struct.
  * @return void
  */
-void ft_exec_fract(t_mlx *fract) {
+int ft_exec_fract(t_mlx *fract) {
   if (!ft_strcmp(fract->title, "Mandelbrot"))
-    ft_exit(fract, "[INFO] - Mandelbrot hasn't been implemented yet.");
+    ft_mandelbrot(fract);
   else if (!ft_strcmp(fract->title, "Julia"))
     ft_julia(fract);
+  return (0);
 }
 
 /**
@@ -67,6 +69,7 @@ int main(int argc, char **argv) {
   mlx_mouse_hook(fract.win, ft_mouse_hook, &fract);
   mlx_key_hook(fract.win, ft_key_hook, &fract);
   mlx_hook(fract.win, 17, 0, ft_mlx_exit, &fract);
+  mlx_loop_hook(fract.mlx, ft_exec_fract, &fract);
   mlx_loop(fract.mlx);
   return (0);
 }
