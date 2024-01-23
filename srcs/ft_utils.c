@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 13:27:57 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 14:36:06 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ void ft_exit(t_mlx *fract, char *content) {
     ft_putstr_fd(content, STDERR_FILENO);
     exit(EXIT_SUCCESS);
   }
+}
+
+/**
+ * @brief MLX Exit
+ *
+ * @param fract t_mlx - Fractal struct.
+ * @return int
+ */
+int ft_mlx_exit(t_mlx *fract) {
+  ft_exit(fract, "");
+  return (0);
 }
 
 /**

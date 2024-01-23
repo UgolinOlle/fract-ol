@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 13:24:50 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 14:36:19 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_mlx {
 } t_mlx;
 
 // -- Hooks
+int ft_mouse_hook(int keycode, int x, int y, t_mlx *fract);
 int ft_key_hook(int keycode, t_mlx *fract);
 
 // -- Init
@@ -63,6 +64,7 @@ void ft_init_fractol(t_mlx *fract);
 
 // -- Utils
 void ft_exit(t_mlx *fract, char *content);
+int ft_mlx_exit(t_mlx *fract);
 int ft_create_rgb(t_color rgb, t_mlx *fract);
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
 void ft_print_fractol(t_mlx *fract);
