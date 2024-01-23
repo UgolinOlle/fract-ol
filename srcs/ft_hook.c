@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:57:35 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 14:25:29 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 14:34:27 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,30 @@ static void ft_move(int keycode, t_mlx *fract) {
     fract->min.im -= (fract->max.im - fract->min.im) / 10;
     fract->max.im -= (fract->max.im - fract->min.im) / 10;
   }
+}
+
+/**
+ * @brief Handle mouse movement
+ *
+ * @param keycode int Key code.
+ * @param x int X coordinate.
+ * @param y int Y coordinate.
+ * @param fract t_mlx Fractal struct.
+ * @return int
+ */
+int ft_mouse_hook(int keycode, int x, int y, t_mlx *fract) {
+  if (keycode == 4) {
+    fract->min.re = fract->min.re + (x - WIDTH / 2) * 0.1;
+    fract->max.re = fract->max.re + (x - WIDTH / 2) * 0.1;
+    fract->min.im = fract->min.im + (y - HEIGHT / 2) * 0.1;
+    fract->max.im = fract->max.im + (y - HEIGHT / 2) * 0.1;
+  } else if (keycode == 5) {
+    fract->min.re = fract->min.re - (x - WIDTH / 2) * 0.1;
+    fract->max.re = fract->max.re - (x - WIDTH / 2) * 0.1;
+    fract->min.im = fract->min.im - (y - HEIGHT / 2) * 0.1;
+    fract->max.im = fract->max.im - (y - HEIGHT / 2) * 0.1;
+  }
+  return (0);
 }
 
 /**
