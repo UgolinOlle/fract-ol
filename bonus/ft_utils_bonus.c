@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_utils_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uolle <uolle@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 18:09:54 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/24 00:02:06 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	ft_create_rgb(t_color rgb, t_mlx *fract)
 	else
 	{
 		rgb.r = (fract->iter * 8) % 255;
-		rgb.g = (fract->iter * 2) % 255;
-		rgb.b = (fract->iter * 3) % 255;
+		rgb.g = (fract->iter * 13) % 255;
+		rgb.b = (fract->iter * 21) % 255;
 		return (rgb.r << 16 | rgb.g << 8 | rgb.b);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:57:35 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 22:50:39 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/24 00:08:11 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,30 @@
  */
 static void	ft_move(int keycode, t_mlx *fract)
 {
+	double	tmp_x;
+	double	tmp_y;
+
+	tmp_x = (fract->max.re - fract->min.re);
+	tmp_y = (fract->max.im - fract->min.im);
 	if (keycode == 123 || keycode == 0)
 	{
-		fract->min.re -= (fract->max.re - fract->min.re) / 10;
-		fract->max.re -= (fract->max.re - fract->min.re) / 10;
+		fract->min.re -= tmp_x / 10;
+		fract->max.re -= tmp_x / 10;
 	}
 	else if (keycode == 124 || keycode == 2)
 	{
-		fract->min.re += (fract->max.re - fract->min.re) / 10;
-		fract->max.re += (fract->max.re - fract->min.re) / 10;
+		fract->min.re += tmp_x / 10;
+		fract->max.re += tmp_x / 10;
 	}
 	else if (keycode == 125 || keycode == 1)
 	{
-		fract->min.im += (fract->max.im - fract->min.im) / 10;
-		fract->max.im += (fract->max.im - fract->min.im) / 10;
+		fract->min.im += tmp_y / 10;
+		fract->max.im += tmp_y / 10;
 	}
 	else if (keycode == 126 || keycode == 13)
 	{
-		fract->min.im -= (fract->max.im - fract->min.im) / 10;
-		fract->max.im -= (fract->max.im - fract->min.im) / 10;
+		fract->min.im -= tmp_y / 10;
+		fract->max.im -= tmp_y / 10;
 	}
 }
 
