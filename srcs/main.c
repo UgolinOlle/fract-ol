@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:47:19 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 16:41:44 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 17:17:30 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	ft_check_args(argc, argv, &fract);
 	ft_init_fractol(&fract);
 	ft_exec_fract(&fract);
-	mlx_mouse_hook(fract.win, ft_mouse_hook, &fract);
+	mlx_mouse_hook(fract.win, ft_zoom, &fract);
 	mlx_key_hook(fract.win, ft_key_hook, &fract);
 	mlx_hook(fract.win, 17, 0, ft_mlx_exit, &fract);
 	mlx_loop_hook(fract.mlx, ft_exec_fract, &fract);

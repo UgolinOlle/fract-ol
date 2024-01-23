@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 16:42:06 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 17:18:06 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_mlx
 }				t_mlx;
 
 // -- Hooks
-int				ft_mouse_hook(int keycode, int x, int y, t_mlx *fract);
 int				ft_key_hook(int keycode, t_mlx *fract);
 
 // -- Init
@@ -70,6 +69,11 @@ void			ft_exit(t_mlx *fract, char *content);
 int				ft_mlx_exit(t_mlx *fract);
 int				ft_create_rgb(t_color rgb, t_mlx *fract);
 void			ft_draw_pixel(t_mlx *fract, int x, int y, int color);
+
+// -- Zoom
+void			ft_zoom_in(t_mlx *fract, double cre, double cim);
+void			ft_zoom_out(t_mlx *fract, double cre, double cim);
+int				ft_zoom(int keycode, int x, int y, t_mlx *fract);
 
 // -- Julia
 void			ft_init_julia(t_mlx *fract, int set);
