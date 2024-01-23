@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:57:35 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 15:55:26 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 16:35:16 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int ft_key_hook(int keycode, t_mlx *fract) {
          (fract->max.re - fract->min.re) * (WIDTH / 2) / (WIDTH - 1.0);
   c.im = fract->min.im +
          (fract->max.im - fract->min.im) * (HEIGHT / 2) / (HEIGHT - 1.0);
-  printf("keycode: %d\n", keycode);
   if (keycode == 53)
     ft_exit(fract, "");
   else if (keycode == 24 || keycode == 27)
@@ -113,8 +112,6 @@ int ft_key_hook(int keycode, t_mlx *fract) {
   else if (ft_strcmp(fract->title, "Julia") == 0 &&
            (keycode == 6 || keycode == 7 || keycode == 8 || keycode == 9))
     ft_julia_movement(keycode, fract);
-  else if (keycode == 49)
-    ft_color_shift(&fract->rgb);
   ft_exec_fract(fract);
   return (0);
 }

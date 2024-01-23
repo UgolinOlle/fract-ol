@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 16:03:27 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 16:35:30 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void ft_exit(t_mlx *fract, char *content);
 int ft_mlx_exit(t_mlx *fract);
 int ft_create_rgb(t_color rgb, t_mlx *fract);
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
-void ft_color_shift(t_color *rgb);
-void ft_print_fractol(t_mlx *fract);
 
 // -- Julia
 void ft_init_julia(t_mlx *fract, int set);
