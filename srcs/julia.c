@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:54:05 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/22 21:34:47 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 13:49:36 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static int ft_julia_iteration(t_mlx *fract, t_complex *c, double c_r,
     z_r = z_n.re;
     z_i = z_n.im;
     if (z_r * z_r + z_i * z_i > 4)
-      return (i);
+      break;
     i++;
   }
-  return (fract->max_iter);
+  return (i);
 }
 
 /**
@@ -62,13 +62,12 @@ void ft_init_julia(t_mlx *fract, int set) {
     fract->julia.re = -0.4;
     fract->julia.im = 0.6;
   } else if (set == 2) {
-    fract->julia.re = -0.8;
-    fract->julia.im = 0.156;
+    fract->julia.re = 0.285;
+    fract->julia.im = 0.01;
   } else if (set == 3) {
     fract->julia.re = -0.835;
     fract->julia.im = -0.2321;
   }
-  ft_print_fractol(fract);
 }
 
 /**
@@ -94,14 +93,28 @@ void ft_julia(t_mlx *fract) {
           fract->min.im + (fract->max.im - fract->min.im) * y / (HEIGHT - 1.0);
       fract->iter =
           ft_julia_iteration(fract, &c, fract->julia.re, fract->julia.im);
-      if (fract->iter == fract->max_iter) {
-        fract->color = ft_create_trgb(fract->rgb, 1);
-      } else {
-        fract->color = ft_create_trgb(fract->rgb, 1) * fract->iter;
-      }
+      fract->color = ft_create_rgb(fract->rgb, fract) * fract->iter;
       addr = fract->data + (y * fract->size_line + x * (fract->bpp / 8));
       *(unsigned int *)addr = fract->color;
     }
   }
   mlx_put_image_to_window(fract->mlx, fract->win, fract->img, 0, 0);
+}
+
+/**
+ * @brief Handle movement for Julia fractal.
+ *
+ * @param keycode int - Key code.
+ * @param fract t_mlx - Fractal struct.
+ * @return void
+ */
+void ft_julia_movement(int keycode, t_mlx *fract) {
+  if (keycode == 6)
+    fract->julia.re -= 0.01;
+  else if (keycode == 7)
+    fract->julia.re += 0.01;
+  else if (keycode == 8)
+    fract->julia.im += 0.01;
+  else if (keycode == 9)
+    fract->julia.im -= 0.01;
 }
