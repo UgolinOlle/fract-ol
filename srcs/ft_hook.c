@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:57:35 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 14:34:27 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 15:55:26 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void ft_zoom(int keycode, t_mlx *fract) {
       (fract->max.re - fract->min.re) * (WIDTH / 2) / (WIDTH - 1.0);
   y = fract->min.im +
       (fract->max.im - fract->min.im) * (HEIGHT / 2) / (HEIGHT - 1.0);
-  if (keycode == 27) {
+  if (keycode == 27 || keycode == 4) {
     fract->min.re = x + (fract->min.re - x) * 1.5;
     fract->min.im = y + (fract->min.im - y) * 1.5;
     fract->max.re = x + (fract->max.re - x) * 1.5;
     fract->max.im = y + (fract->max.im - y) * 1.5;
-  } else if (keycode == 24) {
+  } else if (keycode == 24 || keycode == 5) {
     fract->min.re = x + (fract->min.re - x) / 1.5;
     fract->min.im = y + (fract->min.im - y) / 1.5;
     fract->max.re = x + (fract->max.re - x) / 1.5;
@@ -113,6 +113,8 @@ int ft_key_hook(int keycode, t_mlx *fract) {
   else if (ft_strcmp(fract->title, "Julia") == 0 &&
            (keycode == 6 || keycode == 7 || keycode == 8 || keycode == 9))
     ft_julia_movement(keycode, fract);
+  else if (keycode == 49)
+    ft_color_shift(&fract->rgb);
   ft_exec_fract(fract);
   return (0);
 }
