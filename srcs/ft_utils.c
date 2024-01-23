@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 14:36:06 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 15:43:58 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,18 @@ void ft_draw_pixel(t_mlx *fract, int x, int y, int color) {
 
   dst = fract->data + (y * fract->size_line + x * (fract->bpp / 8));
   *(unsigned int *)dst = color;
+}
+
+/**
+ * @brief Shift color.
+ *
+ * @param fract t_mlx - Fractal struct.
+ * @return void
+ */
+void ft_color_shift(t_color *rgb) {
+  rgb->r += 30;
+  rgb->g += 30;
+  rgb->b += 30;
 }
 
 /**
