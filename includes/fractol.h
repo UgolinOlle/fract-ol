@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 15:44:04 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 16:03:27 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,9 @@ int ft_exec_fract(t_mlx *fract);
 // -- Mandelbrot
 void ft_init_mandelbrot(t_mlx *fract);
 void ft_mandelbrot(t_mlx *fract);
+
+// -- Tricorn
+void ft_init_tricorn(t_mlx *fract);
+void ft_tricorn(t_mlx *fract);
 
 #endif
