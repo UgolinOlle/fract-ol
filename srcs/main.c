@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:47:19 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/22 21:23:27 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 14:36:29 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int main(int argc, char **argv) {
 
   ft_check_args(argc, argv, &fract);
   ft_init_fractol(&fract);
-  ft_print_fractol(&fract);
   ft_exec_fract(&fract);
+  mlx_mouse_hook(fract.win, ft_mouse_hook, &fract);
+  mlx_key_hook(fract.win, ft_key_hook, &fract);
+  mlx_hook(fract.win, 17, 0, ft_mlx_exit, &fract);
   mlx_loop(fract.mlx);
   return (0);
 }
