@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 14:36:19 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 15:44:04 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void ft_exit(t_mlx *fract, char *content);
 int ft_mlx_exit(t_mlx *fract);
 int ft_create_rgb(t_color rgb, t_mlx *fract);
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
+void ft_color_shift(t_color *rgb);
 void ft_print_fractol(t_mlx *fract);
 
 // -- Julia
@@ -75,6 +76,10 @@ void ft_julia(t_mlx *fract);
 void ft_julia_movement(int keycode, t_mlx *fract);
 
 // -- Main
-void ft_exec_fract(t_mlx *fract);
+int ft_exec_fract(t_mlx *fract);
+
+// -- Mandelbrot
+void ft_init_mandelbrot(t_mlx *fract);
+void ft_mandelbrot(t_mlx *fract);
 
 #endif
