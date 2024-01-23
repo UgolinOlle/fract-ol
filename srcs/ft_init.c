@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 23:53:41 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 16:39:23 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 18:03:47 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_init_mlx(t_mlx *fract)
 {
 	fract->mlx = mlx_init();
 	if (!fract->mlx)
-		ft_exit(fract, "[ERROR] - Failed to initialize mlx");
+		ft_handle_error("[ERROR] - Failed to initialize mlx");
 	fract->win = mlx_new_window(fract->mlx, HEIGHT, WIDTH, fract->title);
 	if (!fract->win)
 		ft_exit(fract, "[ERROR] - Failed to create window");

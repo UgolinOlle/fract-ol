@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 16:39:32 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 18:04:18 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
  */
 void	ft_exit(t_mlx *fract, char *content)
 {
-	if (fract->win)
-		mlx_destroy_window(fract->mlx, fract->win);
 	if (fract->img)
 		mlx_destroy_image(fract->mlx, fract->img);
+	if (fract->win)
+		mlx_destroy_window(fract->mlx, fract->win);
 	if (fract->mlx)
 		free(fract->mlx);
 	if (!ft_strcmp(content, ""))
@@ -32,6 +32,7 @@ void	ft_exit(t_mlx *fract, char *content)
 		ft_putstr_fd(content, STDERR_FILENO);
 		exit(EXIT_SUCCESS);
 	}
+	exit(EXIT_SUCCESS);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:57:11 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 16:41:40 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 18:05:35 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_tricorn(t_mlx *fract)
 	int			y;
 	t_complex	c;
 
+	mlx_clear_window(fract->mlx, fract->win);
 	x = 0;
 	while (x < WIDTH)
 	{
