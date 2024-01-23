@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 01:13:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/22 21:26:26 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 13:27:57 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,29 @@ void ft_exit(t_mlx *fract, char *content) {
     mlx_destroy_image(fract->mlx, fract->img);
   if (fract->mlx)
     free(fract->mlx);
-  ft_putstr_fd(content, STDERR_FILENO);
-  exit(EXIT_SUCCESS);
+  if (!ft_strcmp(content, ""))
+    exit(EXIT_SUCCESS);
+  else {
+    ft_putstr_fd(content, STDERR_FILENO);
+    exit(EXIT_SUCCESS);
+  }
 }
 
 /**
  * @brief Create TRGB color.
  *
  * @param t_color color - Color struct.
- * @param int t - Transparency.
  * @return int
  */
-int ft_create_trgb(t_color rgb, int t) {
-  return (t << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b);
+int ft_create_rgb(t_color rgb, t_mlx *fract) {
+  if (fract->iter == fract->max_iter)
+    return (0x000000);
+  else {
+    rgb.r = (fract->iter * 9) % 255;
+    rgb.g = (fract->iter * 3) % 255;
+    rgb.b = (fract->iter * 4) % 255;
+    return (rgb.r << 16 | rgb.g << 8 | rgb.b);
+  }
 }
 
 /**

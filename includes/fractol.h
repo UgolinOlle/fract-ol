@@ -6,7 +6,7 @@
 /*   By: uolle <uolle@student.42bangkok.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 22:50:27 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/22 20:42:56 by uolle            ###   ########.fr       */
+/*   Updated: 2024/01/23 13:24:50 by uolle            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <stdlib.h>
 
 // -- Variables
-#define WIDTH 700
-#define HEIGHT 700
+#define WIDTH 600
+#define HEIGHT 600
 
 // -- Structure
 
@@ -55,18 +55,22 @@ typedef struct s_mlx {
   int color;
 } t_mlx;
 
+// -- Hooks
+int ft_key_hook(int keycode, t_mlx *fract);
+
 // -- Init
 void ft_init_fractol(t_mlx *fract);
 
 // -- Utils
 void ft_exit(t_mlx *fract, char *content);
-int ft_create_trgb(t_color rgb, int t);
+int ft_create_rgb(t_color rgb, t_mlx *fract);
 void ft_draw_pixel(t_mlx *fract, int x, int y, int color);
 void ft_print_fractol(t_mlx *fract);
 
 // -- Julia
 void ft_init_julia(t_mlx *fract, int set);
 void ft_julia(t_mlx *fract);
+void ft_julia_movement(int keycode, t_mlx *fract);
 
 // -- Main
 void ft_exec_fract(t_mlx *fract);
