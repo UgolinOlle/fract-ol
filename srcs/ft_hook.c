@@ -6,7 +6,7 @@
 /*   By: ugolin-olle <ugolin-olle@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 22:57:35 by uolle             #+#    #+#             */
-/*   Updated: 2024/01/23 22:34:12 by ugolin-olle      ###   ########.fr       */
+/*   Updated: 2024/01/23 22:50:28 by ugolin-olle      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,19 @@ void	ft_zoom_in(t_mlx *fract, double cre, double cim)
 }
 
 /**
- * @brief Zoom in
+ * @brief Zoom out
  *
  * @param fract t_mlx Fractal struct.
  * @param cre double Mouse real part.
  * @param cim double Mouse imaginary part.
  * @return void
  */
-void	ft_zoom_in(t_mlx *fract, double cre, double cim)
+void	ft_zoom_out(t_mlx *fract, double cre, double cim)
 {
-	fract->min.re = cre + (fract->min.re - cre) * 0.9;
-	fract->min.im = cim + (fract->min.im - cim) * 0.9;
-	fract->max.re = cre + (fract->max.re - cre) * 0.9;
-	fract->max.im = cim + (fract->max.im - cim) * 0.9;
+	fract->min.re = cre + (fract->min.re - cre) / 0.9;
+	fract->min.im = cim + (fract->min.im - cim) / 0.9;
+	fract->max.re = cre + (fract->max.re - cre) / 0.9;
+	fract->max.im = cim + (fract->max.im - cim) / 0.9;
 }
 
 /**
